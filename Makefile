@@ -7,3 +7,6 @@ env:
 
 output/casestudy_moby_dick.pdf: src/moby_dick.py
 	venv/bin/python $<
+
+
+all: output/casestudy_moby_dick.pdf
