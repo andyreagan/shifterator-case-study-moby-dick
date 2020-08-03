@@ -13,5 +13,6 @@ output/casestudy_moby_dick_with_stopwords.pdf: src/moby_dick.py
 
 output/case_study_moby_dick_combined.pdf: output/casestudy_moby_dick.pdf output/casestudy_moby_dick_with_stopwords.pdf
 	/Users/andyreagan/tools/perl/kitchentable/pdftile.pl 1 2 .48 3 0 l 8 "" "" output/casestudy_moby_dick.pdf "" output/casestudy_moby_dick_with_stopwords.pdf output/case_study_moby_dick_combined
+	open $@
 
 all: output/casestudy_moby_dick.pdf output/case_study_moby_dick_combined.pdf

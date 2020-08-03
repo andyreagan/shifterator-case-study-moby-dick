@@ -41,7 +41,13 @@ def without_stopwords(left, right):
         + r"$\Phi_{avg}=$"
         + "{0:.2f}".format(s_avg_2)
     )
-
+    ax = sent_shift.get_shift_graph(
+        system_names = ['First Half', 'Second Half'],
+        title=title,
+        xlabel=r"Per word average score shift $\delta \Phi_\tau$ (%)",
+        serif=True,
+        show_plot=False
+    )
     ax = sent_shift.get_shift_graph(
         system_names = ['First Half', 'Second Half'],
         title=title,
@@ -79,6 +85,13 @@ def with_stopwords(left, right):
         + "{0:.2f}".format(s_avg_2)
     )
 
+    ax = sent_shift.get_shift_graph(
+        system_names = ['First Half', 'Second Half'],
+        title=title,
+        xlabel=r"Per word average score shift $\delta \Phi_\tau$ (%)",
+        serif=True,
+        show_plot=False
+    )
     ax = sent_shift.get_shift_graph(
         system_names = ['First Half', 'Second Half'],
         title=title,
