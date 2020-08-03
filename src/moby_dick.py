@@ -49,7 +49,7 @@ def without_stopwords(left, right):
         serif=True,
         show_plot=False
     )
-    plt.savefig('output/casestudy_moby_dick.pdf')
+    plt.savefig('output/casestudy_moby_dick.pdf', bbox_inches='tight')
     # plt.show()
 
 
