@@ -21,8 +21,8 @@ def get_csv(uri="https://hedonometer.org/data/bookdata/processed/moby_dick.csv")
 
 def without_stopwords(left, right):
     sent_shift = sh.WeightedAvgShift(
-        type2freq_1=left.to_dict(),
-        type2freq_2=right.to_dict(),
+        type2freq_1=left,
+        type2freq_2=right,
         type2score_1="labMT_English",
         stop_lens=[(4,6)],
         stop_words={'set_of_words', 'to_exclude_manually'},
@@ -64,8 +64,8 @@ def with_stopwords(left, right):
     stop_words = {'coffin', 'cry', 'cried'}
 
     sent_shift = sh.WeightedAvgShift(
-        type2freq_1=left.to_dict(),
-        type2freq_2=right.to_dict(),
+        type2freq_1=left,
+        type2freq_2=right,
         type2score_1="labMT_English",
         stop_lens=[(4,6)],
         stop_words=stop_words,
@@ -108,8 +108,8 @@ def main():
     df = get_csv()
     df.columns = range(df.shape[1])
     df.index = words
-    left = df.iloc[:, 1:floor(df.shape[1]/2)].sum(axis=1)
-    right = df.iloc[:, floor(df.shape[1]/2):].sum(axis=1)
+    left = df.iloc[:, 1:floor(df.shape[1]/2)].sum(axis=1).to_dict()
+    right = df.iloc[:, floor(df.shape[1]/2):].sum(axis=1).to_dict()
 
     with_stopwords(left, right)
     without_stopwords(left, right)
