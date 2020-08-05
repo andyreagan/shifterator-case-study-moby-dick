@@ -13,16 +13,10 @@ output/casestudy_moby_dick_with_stopwords.pdf: src/moby_dick.py
 	venv/bin/python $<
 
 output/casestudy_moby_dick_raw.pdf: src/moby_dick_raw.py
-	mv output/casestudy_moby_dick{,_}.pdf
 	venv/bin/python $<
-	mv output/casestudy_moby_dick.pdf $@
-	mv output/casestudy_moby_dick{_,}.pdf
 
 output/casestudy_moby_dick_with_stopwords_raw.pdf: src/moby_dick_raw.py
-	mv output/casestudy_moby_dick_with_stopwords{,_}.pdf
 	venv/bin/python $<
-	mv output/casestudy_moby_dick_with_stopwords.pdf $@
-	mv output/casestudy_moby_dick_with_stopwords{_,}.pdf
 
 output/case_study_moby_dick_combined.pdf: output/casestudy_moby_dick.pdf output/casestudy_moby_dick_with_stopwords.pdf
 	/Users/andyreagan/tools/perl/kitchentable/pdftile.pl 1 2 .48 3 0 l 8 "" "" output/casestudy_moby_dick.pdf "" output/casestudy_moby_dick_with_stopwords.pdf output/case_study_moby_dick_combined

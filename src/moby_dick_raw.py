@@ -2,7 +2,7 @@
 import requests
 import re
 from core_stories_functions import tokenize, split_fixed_size
-from moby_dick import without_stopwords, with_stopwords
+from moby_dick import make_shift
 
 
 def get_raw_book(uri: str='http://www.gutenberg.org/files/2701/2701.txt') -> list:
@@ -27,7 +27,9 @@ def main():
 
     x = chapter_lines + [end]
 
+
     chapter_bodies = [('\n'.join(lines[x[i][0]+3:x[i+1][0]])).strip('\n') for i in range(len(chapter_lines))]
+    chapter_bodies_no_Coffin = [('\n'.join(lines[x[i][0]+3:x[i+1][0]])).strip('\n').replace('Coffin', '') for i in range(len(chapter_lines))]
 
     assert len(chapter_bodies) == len(chapter_headings)
 
@@ -45,8 +47,39 @@ def main():
     [(len(x), sum(x.values())) for x in split_fixed_size(moby_dick['token_list'], 2)]
     left, right = split_fixed_size(moby_dick['token_list'], 2)
 
-    without_stopwords(left, right)
-    with_stopwords(left, right)
+    make_shift(left,
+               right,
+               stop_words={},
+               suffix='_raw',
+               title='Moby Dick by Herman Melville')
+    make_shift(left,
+               right,
+               stop_words={'coffin', 'cry', 'cried'},
+               suffix='_with_stopwords_raw',
+               title='Moby Dick by Herman Melville, with Stop Words')
+    make_shift(left,
+               right,
+               stop_words={'cry', 'cried'},
+               suffix='_with_stopwords_allcoffin_raw',
+               title='Moby Dick by Herman Melville, with Stop Words')
+
+
+    moby_dick_Coffin = {
+    'title': 'Moby Dick',
+    'author': 'Herman Melville',
+    'chapters': [{
+        'title': x[1].strip(),
+        'body_raw': y} for x, y in zip(chapter_headings, chapter_bodies_no_Coffin)]}
+
+    tokenize(moby_dick_Coffin)
+
+    left, right = split_fixed_size(moby_dick_Coffin['token_list'], 2)
+
+    make_shift(left,
+               right,
+               stop_words={'cry', 'cried'},
+               suffix='_with_stopwords_Coffin_raw',
+               title='Moby Dick by Herman Melville, with Stop Words')
 
 
 
