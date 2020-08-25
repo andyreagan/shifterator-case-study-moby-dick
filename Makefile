@@ -26,4 +26,10 @@ output/case_study_moby_dick_raw_combined.pdf: output/casestudy_moby_dick_raw.pdf
 	/Users/andyreagan/tools/perl/kitchentable/pdftile.pl 1 2 .48 3 0 l 8 "" "" output/casestudy_moby_dick_raw.pdf "" output/casestudy_moby_dick_with_stopwords_raw.pdf output/case_study_moby_dick_raw_combined
 	open $@
 
+output/case_study_moby_dick_parks.pdf: output/casestudy_moby_dick_raw.pdf output/shifter-parks-allcities-nostop.pdf
+	/Users/andyreagan/tools/perl/kitchentable/pdftile.pl 1 2 .48 3 0 l 8 "" "" output/casestudy_moby_dick_raw.pdf "" output/shifter-parks-allcities-nostop.pdf output/case_study_moby_dick_parks
+
+output/fig02-presidential-speeches-combined.pdf: output/fig02-presidential-speeches-labmt.pdf output/fig02-presidential-speeches-socialsent.pdf
+	/Users/andyreagan/tools/perl/kitchentable/pdftile.pl 1 2 .48 3 0 l 8 "" "" output/fig02-presidential-speeches-labmt.pdf "" output/fig02-presidential-speeches-socialsent.pdf output/fig02-presidential-speeches-combined
+
 all: output/case_study_moby_dick_combined.pdf output/case_study_moby_dick_raw_combined.pdf
